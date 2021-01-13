@@ -1,0 +1,302 @@
+v1<-c(121,131,134,128)   #create vector 1 for matrix construction
+
+
+v2<-c(152,137,129,142)   #create vector 2 for matrix construction
+
+
+matCol<-cbind(v1,v2)  # the cbind creates a matrix as columns
+
+
+matCol                      # print the matrix
+
+
+matRow<-t(matCol)             # transform the matrix 
+
+matRow                        # print the matrix 
+
+matCol<-matRow          #copy matrix for the purpose of adding a label
+
+dimnames(matCol)=list(c('F','M'),c('9th','10th','11th','12th'))  #name the cols and rows
+
+matCol
+
+#Chalenge 5 matrix math#
+
+matD+matname              # add  matrix1 to matrix2
+
+#create factors#
+HighestEducationCompleted <- factor(c(“MiddleSchool”, “HighSchool”, “Undergrad”, “Grad”, “Doctorate”, “Other”))
+
+levels(HighestEducationCompleted)
+
+nlevels(HighestEducationCompleted)
+
+Factors
+#create ordered factor variable OlympicMedals and print levels
+
+OlympicMedals <- factor(levels=c("Gold", "Sliver", "Bronze"), ordered=TRUE)
+
+levels(OlympicMedals)
+
+nlevels(OlympicMedals)
+
+
+Linux
+
+#Example# cp main.c demo.h libc. /home/project backup
+
+#Copy File from Milestones to Analysis dir#
+cp dat500_milestone_two_data_firefighter.csv da
+t500_milestone_two_data_police.csv ~workspace/Analysis
+
+#Rename file#
+mv dat500_milestone_two_data_firefighter.csv Firefighter.csv
+#Rename file#
+mv dat500_milestone_two_data_police.csv Police.csv
+
+
+#Milestne 2 RScript#
+#Load Data Set Firefighter.csv and Police.csv#
+library(datasets)
+
+data(iris)
+
+#read files into Rstudio#
+library(readr)
+Firefighter <- read_csv("~/workspace/Analysis/Firefighter.csv")
+
+View(Firefighter)
+
+
+Police <- read_csv("~/workspace/Analysis/Police.csv")
+View(Police)
+
+
+
+
+#Variables#
+#Police Salaries mean, min and max#
+mean(Police$Salaries)
+min(Police$Salaries)
+max(Police$Salaries)
+
+#Police Overtime mean,min and max#
+mean(Police$Overtime)
+min(Police$Overtime)
+max(Police$Overtime)
+
+#Firefighter Salaries mean, min and max#
+mean(Firefighter$Salaries)
+min(Firefighter$Salaries)
+max(Firefighter$Salaries)
+
+#Firefighter Overtime mean,min and max#
+mean(Firefighter$Overtime)
+min(Firefighter$Overtime)
+max(Firefighter$Overtime)
+
+#Data Frame Challenges#
+#Challeenge 1#
+#vectors for data frame#
+vplayer = c("Player1", "Player2", "Player3", "Player4", "Player5") 
+vr1 = c(68, 68, 64, 66, 70) 
+vr2 = c(65, 69, 70, 62, 70) 
+vr3 = c(66, 73, 64, 72, 64) 
+vr4 = c(69, 68, 71, 70, 78) 
+vtot = c(268, 278, 269, 270, 282)
+
+#creating the data frame#
+dfgolf = data.frame(vplayer,vr1,vr2,vr3,vr4,vtot)
+
+#printing the data frame#  
+dfgolf
+
+#Challenge 2 Data Frames#
+dfgolf[ ,5]         #this selects all rows of column
+dfgolf[2,2]	    # this selects row 2 column 2#
+
+
+#selecting data using a subset from a data frame
+
+
+subsetdata <- subset(dfgolf, vtot>mean(vtot), select=c(vplayer, vtot))
+
+subsetdata
+
+
+#Sorting a Data Frame#
+
+#Load Credit Defult Dataset#
+
+install.packages("ISLR")
+
+library(ISLR)   
+
+data(Default)
+
+#Head the first 15 line, tail the last 6 lines#
+
+head(Default, n=15)
+
+tail(Default, n=6)
+
+#Data Frame View challenge#
+library(ISLR)
+
+data(Default)
+
+View(Default)
+
+
+#Output observed#
+#1027.77053#
+327 default - no 
+    student - no
+    balance - 1027.771
+    income -  44406.84
+
+
+#List Challenge 3.1#
+
+CreditDefaultLst<- list(nrow(Default),ncol(Default),head(Default),tail(Default),summary(Default))
+
+print(CreditDefaultLst)
+
+
+#3.2 Challenge#
+
+library(ISLR)
+
+data(Default)
+
+CreditDefaultLst <- list(nrow(Default),
+ncol(Default),
+head(Default),
+tail(Default),summary(Default))
+names(CreditDefaultLst)<- c("NumRows", "NumCol", "Head","Tail","Summary")
+
+print(CreditDefaultLst$Head)
+
+
+
+#Milestone 3#
+
+#Read in Files
+
+library(readr)
+
+#Adjust the file name and file path below for each of the 2 files.Use the same file read code from Milestone 2
+
+firefighter <- read_csv("~/workspace/SNHU/DAT-500/Milestones/Firefighter.csv")
+
+police <- read_csv("~/workspace/SNHU/DAT-500/Milestones/Police.csv")
+
+#Adjust the sample field names and variable names below to be the same fields used in Milestone 2
+#
+Police Salaries mean, min and max#
+
+pSalMean<- mean(police$Salaries)
+
+PSalMin<- min(police$Salaries)
+
+PSalMax<- max(police$Salaries)
+
+#Police Overtime mean,min and max#
+
+pOTMean<- mean(police$Overtime)
+
+pOTMin<- min(police$Overtime)
+
+pOTMax<- max(police$Overtime)
+
+#Firefighter Salaries mean, min and max#
+
+ffSalMean<- mean(firefighter$Salaries)
+
+ffSalMin<- min(firefighter$Salaries)
+
+ffSalMax<- max(firefighter$Salaries)
+
+#Firefighter Overtime mean,min and max#
+
+ffOTMean<- mean(firefighter$Overtime)
+
+ffOTMin<- min(firefighter$Overtime)
+
+ffOTMax<- max(firefighter$Overtime)
+
+#Vectors Firefighter#
+FirefighterV <- c(ffSalMean,ffSalMin,ffSalMax,ffOTMean,ffOTMin,ffOTMax)
+print(FirefighterV)
+
+#Matrix Police#
+#create vector for matrix construction
+PoliceV<- c(pSalMean,PSalMin,PSalMax,pOTMean,pOTMin,pOTMax)
+# the cbind creates a matrix as columns
+PoliceM <-cbind(PoliceV)
+PoliceM
+#Name Rows#
+dimnames(PoliceM)=list(c('pSalMean','PSalMin','PSalMax','pOTMean','pOTMin','pOTMax'),c('Police))   
+PoliceM 
+              
+#Combine Data into Single Matrix#
+#create vector for matrix construction
+PoliceV <- c(pSalMean,PSalMin,PSalMax,pOTMean,pOTMin,pOTMax)
+# the cbind creates a matrix as columns
+CompensationM <-cbind(PoliceV)
+CompensationM
+#Name Rows#
+dimnames(CompensationM)=list(c('pSalMean','PSalMin','PSalMax','pOTMean','pOTMin','pOTMax'),c('Police))   
+CompensationM
+
+#Data Frame#
+df1 = data.frame(CompensationM,PoliceV-FirefighterV)       # df is a data frame
+df1
+
+
+
+
+
+
+
+#Challenge Conditional Statements#
+
+#2.1#
+#if then else
+
+age<-"CHILD"
+
+if (age <18) {age="10"} else {"CHILD"}
+
+age<-"SENIOR"
+
+if (age <65) {age="72"} else {"SENIOR"} 
+
+age<-"ADULT"
+
+if (age <65) {age="22"} else {"ADULT"}
+               
+#While Loop Challaenge#
+
+#Control Flow -- WHILE LOOP
+
+#While Challenge#
+
+i <- -1
+
+while (i < 1.25) {
+  
+print(i)
+
+ i = i+.25
+
+}
+
+
+
+
+
+
+
+
+
