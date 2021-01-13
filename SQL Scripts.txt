@@ -1,0 +1,143 @@
+
+###SQL Script for pulling plant+area+machine name####
+
+Select PlantName, AreaName, MachineName
+From dba.plants key join dba.areas key join dba.machines
+
+
+select p.PlantID, p.PlantName, a.AreaName, a.AreaID, m.MachineID, m.MachineName, m.MIDID, mid.MIDNumber 
+from plants p key join areas a key join machines m 
+left join mid on m.MIDID=mid.MIDID
+-- where m.MIDID > 0
+order by m.MachineID
+
+
+
+
+##Churn rate###
+
+
+SELECT COUNT(DISTINCT user_id) AS 'enrollments',
+  COUNT(CASE
+       	WHEN strftime("%m", cancel_date) = '03'
+        THEN user_id
+  END) AS 'march_cancellations',
+ 	ROUND(100.0 * COUNT(CASE
+       	WHEN strftime("%m", cancel_date) = '03'
+        THEN user_id
+  END) / COUNT(DISTINCT user_id)) AS 'churn_rate'
+FROM pro_users
+WHERE signup_date < '2017-04-01'
+	AND (
+    (cancel_date IS NULL) OR
+    (cancel_date > '2017-03-01')
+  );
+
+
+###Join Script###
+
+Select *
+From Orders
+Join customers
+On orders.customer_id = customers.customer_id;
+
+
+###Join and order script##
+
+Select *
+From Orders
+Join subscriptions
+On orders.subscription_id = subscriptions.subscription_id;
+
+Select *
+From Orders
+Join subscriptons
+On orders.subscription_id = subscriptions.subscription_id
+Where subscriptions.description = 'Fashion Magazine';
+
+
+
+
+###Join two coloumns###
+
+Select *
+from classes
+join students
+on classes.id = students.class_id;
+
+
+####Simple Cross-Join###
+
+SELECT shirts.shirt_color,
+   pants.pants_color
+FROM shirts
+CROSS JOIN pants;
+
+####Another cross join###
+
+Select Count (*)
+From newspaper
+Where start_month <=3
+ And end_month>= 3;
+ select *
+ From newspaper
+ cross join months;
+
+
+###Average count of employees Example###
+
+Select location, AVG(employees)
+From startups
+Group by location
+Having AVG(employees) >500;
+
+
+
+
+####SQL Script for pulling plant+area####
+
+Select PlantName, AreaName
+From dba.plants key join dba.areas
+
+
+Select PlantName
+From dba.plants
+
+
+
+###Filenames and sheetnames script####
+
+select DISTINCT SpreadsheetFile, SpreadsheetName from NamePlateInput;
+commit;
+
+
+Inter Joins
+Example
+
+Select count(*)
+From newspaper
+join online
+on newspaper.id = online.id
+
+
+
+
+
+
+
+Select PlantName, AreaName, MachineName, MIDNumber
+From dba.plants key join dba.areas key join dba.machines key join dba.midnumbers
+
+
+
+###Mark Query###
+
+
+select ea.DSNName, n.*, ea.* from (
+    select distinct SpreadsheetName, DSNID, Area, MachineName, MIDNumber, MIDID from NamePlateInput where SpreadsheetName <> 'Veolia_Energy_Pearl River'
+)n
+inner join (
+  select DSN.DSNID, AreaName, MachineName, MIDNumber, MID.MIDID, MachineID, DSN.DSNName from machines key join areas key join mid key join DSN 
+)ea on ea.DSNID=n.DSNID and ea.MachineName=n.MachineName where n.MIDNumber <> ea.MIDNumber
+order by ea.dsnid, ea.MachineName
+
