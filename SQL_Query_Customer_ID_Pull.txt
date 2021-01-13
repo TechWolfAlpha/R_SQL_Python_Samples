@@ -1,0 +1,12 @@
+####Generic customer ID pull####
+
+SELECT 
+	users.first_name AS First Name
+
+FROM order.company_product AS order_company
+
+LEFT JOIN company.users AS users ON company_product.user_ID = customerID.id
+
+GROUP BY 1
+ORDER BY 1
+LIMIT 1000
