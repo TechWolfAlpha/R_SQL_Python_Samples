@@ -1,0 +1,12 @@
+CREATE FUNCTION NthHughest(N INT) RETURNS INT
+BEGIN
+DECLARE limitv INT;
+    SET limitv = N - 1;
+  RETURN (
+      # Write your MySQL query statement below.
+    select IFNULL(
+        (select Distinct Salary from Employee order by Salary Desc limit limitv, 1),
+         NULL
+      ) as NthHighest
+  );
+END
